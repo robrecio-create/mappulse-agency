@@ -1,0 +1,131 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { guides } from '../../data/site';
+---
+
+<Layout 
+  title="Local SEO Guides & Resources | MapPulse"
+  description="Free local SEO guides for Gulf Coast businesses. Learn how Google Maps rankings work, GBP optimization, review strategies, and more."
+>
+  <Header activePage="Guides" />
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Resources</span>
+      <h1>Local SEO Guides</h1>
+      <p>Everything you need to understand local search. Written for real business owners, not SEO nerds.</p>
+    </div>
+  </section>
+
+  <section class="section guides-section">
+    <div class="container">
+      <div class="guides-grid">
+        {guides.map((guide, i) => (
+          <a href={`/guides/${guide.slug}/`} class="guide-card">
+            <span class="guide-num">{String(i + 1).padStart(2, '0')}</span>
+            <h2>{guide.name}</h2>
+            <span class="read-more">Read Guide →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Want us to do it for you?</h2>
+        <p>These guides are great for DIY, but if you'd rather have experts handle it — that's what we're here for.</p>
+        <a href="/contact/" class="btn btn-primary">Get a Free Audit →</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .page-hero {
+    padding: 8rem 0 4rem;
+    background: var(--blue-50);
+    text-align: center;
+  }
+
+  .page-hero h1 {
+    margin: 0.75rem 0 1rem;
+  }
+
+  .page-hero p {
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--blue-600);
+    font-size: 1.125rem;
+  }
+
+  .guides-section {
+    background: var(--white);
+  }
+
+  .guides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .guide-card {
+    padding: 2rem;
+    background: var(--blue-50);
+    border-radius: var(--radius-lg);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .guide-card:hover {
+    border-color: var(--teal-500);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .guide-num {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--teal-600);
+    margin-bottom: 1rem;
+  }
+
+  .guide-card h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .read-more {
+    font-weight: 500;
+    color: var(--teal-600);
+  }
+
+  .cta-section {
+    background: var(--blue-50);
+  }
+
+  .cta-box {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--blue-900);
+    border-radius: var(--radius-xl);
+    color: var(--white);
+  }
+
+  .cta-box h2 {
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .cta-box p {
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+  }
+</style>

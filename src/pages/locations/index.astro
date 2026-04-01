@@ -1,0 +1,195 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { locations } from '../../data/site';
+
+// Group by county
+const jackson = locations.filter(l => l.county === 'Jackson');
+const harrison = locations.filter(l => l.county === 'Harrison');
+const hancock = locations.filter(l => l.county === 'Hancock');
+---
+
+<Layout 
+  title="Local SEO Services by City | Gulf Coast MS | MapPulse"
+  description="Local SEO services across the Mississippi Gulf Coast. Ocean Springs, Biloxi, Gulfport, Pascagoula, Bay St. Louis, and more. We know your city."
+>
+  <Header activePage="Locations" />
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Service Areas</span>
+      <h1>Local SEO for Your City</h1>
+      <p>We serve businesses across all three Gulf Coast counties. Click your city to see how we can help you rank locally.</p>
+    </div>
+  </section>
+
+  <section class="section locations-section">
+    <div class="container">
+      <div class="county-group">
+        <h2>Jackson County</h2>
+        <div class="locations-grid">
+          {jackson.map(loc => (
+            <a href={`/locations/${loc.slug}-seo/`} class="location-card">
+              <span class="location-icon">📍</span>
+              <h3>{loc.name} SEO</h3>
+              <p>Local SEO services for {loc.name} businesses</p>
+              <span class="learn-more">Learn More →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="county-group">
+        <h2>Harrison County</h2>
+        <div class="locations-grid">
+          {harrison.map(loc => (
+            <a href={`/locations/${loc.slug}-seo/`} class="location-card">
+              <span class="location-icon">📍</span>
+              <h3>{loc.name} SEO</h3>
+              <p>Local SEO services for {loc.name} businesses</p>
+              <span class="learn-more">Learn More →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="county-group">
+        <h2>Hancock County</h2>
+        <div class="locations-grid">
+          {hancock.map(loc => (
+            <a href={`/locations/${loc.slug}-seo/`} class="location-card">
+              <span class="location-icon">📍</span>
+              <h3>{loc.name} SEO</h3>
+              <p>Local SEO services for {loc.name} businesses</p>
+              <span class="learn-more">Learn More →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Don't see your city?</h2>
+        <p>We serve the entire Mississippi Gulf Coast. Reach out and let's talk about your area.</p>
+        <a href="/contact/" class="btn btn-primary">Contact Us →</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .page-hero {
+    padding: 8rem 0 4rem;
+    background: var(--blue-50);
+    text-align: center;
+  }
+
+  .page-hero h1 {
+    margin: 0.75rem 0 1rem;
+  }
+
+  .page-hero p {
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--blue-600);
+    font-size: 1.125rem;
+  }
+
+  .locations-section {
+    background: var(--white);
+  }
+
+  .county-group {
+    margin-bottom: 4rem;
+  }
+
+  .county-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .county-group h2 {
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--blue-100);
+  }
+
+  .locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .location-card {
+    padding: 2rem;
+    background: var(--blue-50);
+    border-radius: var(--radius-lg);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .location-card:hover {
+    border-color: var(--teal-500);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .location-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .location-card h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .location-card p {
+    color: var(--blue-600);
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+
+  .learn-more {
+    font-weight: 500;
+    color: var(--teal-600);
+  }
+
+  .cta-section {
+    background: var(--blue-50);
+  }
+
+  .cta-box {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--teal-600);
+    border-radius: var(--radius-xl);
+    color: var(--white);
+  }
+
+  .cta-box h2 {
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .cta-box p {
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-box .btn {
+    background: var(--white);
+    color: var(--teal-600);
+  }
+
+  .cta-box .btn:hover {
+    background: var(--blue-900);
+    color: var(--white);
+  }
+</style>

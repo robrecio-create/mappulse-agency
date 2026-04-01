@@ -1,0 +1,276 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../data/site';
+---
+
+<Layout 
+  title="About MapPulse | Gulf Coast Local SEO Agency"
+  description="MapPulse is a Gulf Coast local SEO agency based in Ocean Springs, MS. We help Mississippi businesses rank on Google Maps and local search."
+>
+  <Header activePage="About" />
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">About MapPulse</span>
+      <h1>Gulf Coast local.<br/>No exceptions.</h1>
+      <p>We're not a national agency with a local office. We're from here — Ocean Springs, Jackson County, the Gulf Coast. We know these communities because we live in them.</p>
+    </div>
+  </section>
+
+  <section class="section story-section">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-content">
+          <h2>Built from a directory. Focused on one thing.</h2>
+          <p>MapPulse started with a simple observation: most small businesses on the Gulf Coast are invisible online. Not because they're bad at what they do — they're often the best in town — but because no one ever showed them how to get found.</p>
+          <p>We built JacksonCountyMS.com as a free local business directory for Jackson County. Every business that claims a listing becomes a neighbor we already know. MapPulse is the next step — turning that listing into a real online presence.</p>
+          <p>No cold calls. No national account managers who've never been to Pascagoula. Just a local operator who cares whether your business shows up when someone searches nearby.</p>
+        </div>
+        <div class="story-stats">
+          <div class="stat">
+            <span class="stat-num">3</span>
+            <span class="stat-label">Counties — Jackson, Harrison & Hancock</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">1</span>
+            <span class="stat-label">Local operator — not a franchise</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">$99</span>
+            <span class="stat-label">Entry point — no commitment</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">48h</span>
+            <span class="stat-label">Start time after signing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section values-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Three things we never compromise on.</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card">
+          <h3>Local & Accountable</h3>
+          <p>You can reach us by phone, email, or in person. When something needs attention, a real person responds — fast. No ticketing systems.</p>
+        </div>
+        <div class="value-card">
+          <h3>Transparent Pricing</h3>
+          <p>Every price is on our website. No retainer traps, no surprise add-ons, no lock-in contracts.</p>
+        </div>
+        <div class="value-card">
+          <h3>Results You Can See</h3>
+          <p>Every client gets monthly reporting — rankings, calls, traffic, GBP insights. You never wonder if it's working.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section directory-section">
+    <div class="container">
+      <div class="directory-content">
+        <span class="eyebrow">The Directory Network</span>
+        <h2>Your listing is already the foundation.</h2>
+        <p>JacksonCountyMS.com is a free local business directory for Jackson County, MS. MapPulse is its agency arm — same owner, same brand, same mission.</p>
+        <p>If your business is already listed, you're one step ahead. MapPulse builds on that listing — upgrading it, optimizing your GBP, and rebuilding your website.</p>
+        <div class="directory-links">
+          <a href="https://www.jacksoncountyms.com" target="_blank" rel="noopener">JacksonCountyMS.com →</a>
+          <a href="https://www.harrisoncountyms.com" target="_blank" rel="noopener">HarrisonCountyMS.com →</a>
+          <a href="https://www.hancockcountyms.com" target="_blank" rel="noopener">HancockCountyMS.com →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Want to work with someone local?</h2>
+        <p>Book a free 20-minute call. No pitch — just a straight answer on what your business needs.</p>
+        <a href="/contact/" class="btn btn-primary">Get a Free Audit →</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .page-hero {
+    padding: 8rem 0 4rem;
+    background: var(--blue-50);
+    text-align: center;
+  }
+
+  .page-hero h1 {
+    margin: 0.75rem 0 1.5rem;
+  }
+
+  .page-hero p {
+    max-width: 650px;
+    margin: 0 auto;
+    color: var(--blue-600);
+    font-size: 1.125rem;
+    line-height: 1.7;
+  }
+
+  .story-section {
+    background: var(--white);
+  }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .story-content h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  .story-content p {
+    color: var(--blue-600);
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+
+  .story-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .stat {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--blue-50);
+    border-radius: var(--radius-lg);
+  }
+
+  .stat-num {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--teal-600);
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: var(--blue-600);
+  }
+
+  .values-section {
+    background: var(--blue-900);
+    color: var(--white);
+  }
+
+  .values-section .section-header h2 {
+    color: var(--white);
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .value-card {
+    padding: 2rem;
+    background: var(--blue-800);
+    border-radius: var(--radius-lg);
+  }
+
+  .value-card h3 {
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .value-card p {
+    color: var(--blue-400);
+  }
+
+  .directory-section {
+    background: var(--blue-50);
+  }
+
+  .directory-content {
+    max-width: 700px;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .directory-content h2 {
+    margin: 0.75rem 0 1.5rem;
+  }
+
+  .directory-content p {
+    color: var(--blue-600);
+    margin-bottom: 1rem;
+  }
+
+  .directory-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .directory-links a {
+    font-weight: 600;
+    color: var(--teal-600);
+  }
+
+  .directory-links a:hover {
+    text-decoration: underline;
+  }
+
+  .cta-section {
+    background: var(--white);
+  }
+
+  .cta-box {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, var(--teal-600) 0%, var(--teal-500) 100%);
+    border-radius: var(--radius-xl);
+    color: var(--white);
+  }
+
+  .cta-box h2 {
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .cta-box p {
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-box .btn {
+    background: var(--white);
+    color: var(--teal-600);
+  }
+
+  .cta-box .btn:hover {
+    background: var(--blue-900);
+    color: var(--white);
+  }
+
+  @media (min-width: 768px) {
+    .story-grid {
+      grid-template-columns: 1.5fr 1fr;
+      align-items: start;
+    }
+  }
+</style>

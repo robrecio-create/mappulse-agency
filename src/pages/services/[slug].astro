@@ -1,0 +1,346 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { services, locations } from '../../data/site';
+
+export function getStaticPaths() {
+  return services.map(service => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+
+// Service-specific content (placeholder - can be expanded)
+const serviceContent: Record<string, { intro: string; benefits: string[]; process: string[] }> = {
+  'local-seo': {
+    intro: 'Local SEO is how your business gets found when people search "near me" or for services in your city. We optimize your entire online presence — GBP, website, citations, and content — so Google knows you\'re the best choice in your area.',
+    benefits: ['Higher Google Maps rankings', 'More calls from local customers', 'Better online visibility vs competitors', 'Consistent NAP across the web'],
+    process: ['Audit your current local presence', 'Optimize your Google Business Profile', 'Build and clean up citations', 'Create local content that ranks'],
+  },
+  'google-business-profile': {
+    intro: 'Your Google Business Profile is the #1 factor in local search rankings. 72% of local searches end with a visit to a business within 5 miles. We make sure your GBP is fully optimized with the right categories, services, photos, and posts.',
+    benefits: ['Show up in the Google Maps 3-pack', 'Complete profile that builds trust', 'Weekly posts that keep you relevant', 'Review strategy that gets more stars'],
+    process: ['Audit your current GBP', 'Add all relevant categories and services', 'Optimize photos and description', 'Set up weekly posting schedule'],
+  },
+  'full-seo-package': {
+    intro: 'Everything you need to dominate local search — done for you. Directory listing, GBP optimization, professional website, quarterly articles, and monthly reporting. One price, no contracts, real results.',
+    benefits: ['Enhanced directory listing', 'Fully managed GBP', 'Professional website redesign', 'Quarterly backlink articles', 'Monthly ranking reports'],
+    process: ['Discovery call to understand your business', 'Audit and setup within 2 weeks', 'Live everywhere by day 30', 'Monthly reporting and optimization'],
+  },
+  'local-seo-audit': {
+    intro: 'Not sure where you stand? We\'ll audit your entire online presence — GBP, citations, website, and reviews — and give you a written report with a prioritized action plan. No fluff, just what you need to do.',
+    benefits: ['Know exactly where you stand', 'Prioritized action plan', 'Competitor comparison', 'Clear next steps'],
+    process: ['Review your GBP completeness', 'Check citation consistency', 'Audit website SEO factors', 'Deliver written report'],
+  },
+  'website-design': {
+    intro: 'A fast, mobile-first website built for local search. We don\'t use bloated templates — every site is clean, professional, and built to convert visitors into calls. Local SEO is baked in from day one.',
+    benefits: ['Mobile-first design', 'Fast load times', 'Local SEO built in', 'Schema markup included'],
+    process: ['Discovery and content gathering', 'Design and development', 'SEO optimization', 'Launch and training'],
+  },
+  'citation-building': {
+    intro: 'Citations are mentions of your business name, address, and phone number across the web. Consistent citations tell Google your business is legitimate. We build and clean up citations across 50+ directories.',
+    benefits: ['NAP consistency across the web', 'Listings on 50+ directories', 'Removal of duplicate listings', 'Ongoing monitoring'],
+    process: ['Audit existing citations', 'Correct inconsistencies', 'Build new citations', 'Monitor for accuracy'],
+  },
+  'review-management': {
+    intro: 'Businesses with 50+ reviews get 4x more clicks. We help you systematically collect reviews, respond to every one, and turn happy customers into your best marketing asset.',
+    benefits: ['More 5-star reviews', 'Timely review responses', 'Review collection system', 'Reputation monitoring'],
+    process: ['Set up review collection system', 'Create response templates', 'Train your team', 'Monitor and respond'],
+  },
+  'local-link-building': {
+    intro: 'Backlinks from local sources tell Google you\'re a trusted business in your community. We build relationships with local organizations, directories, and news sites to earn links that matter.',
+    benefits: ['Links from local sources', 'Increased domain authority', 'Better organic rankings', 'Community connections'],
+    process: ['Identify local link opportunities', 'Outreach to partners', 'Create linkable content', 'Track and report'],
+  },
+  'monthly-seo-reporting': {
+    intro: 'Every month you get a clear report showing your rankings, traffic, calls, and GBP performance. No vanity metrics or agency jargon — just the numbers that matter in plain English.',
+    benefits: ['Clear monthly reports', 'Ranking tracking', 'Call and traffic data', 'GBP insights'],
+    process: ['Track keyword rankings', 'Monitor traffic sources', 'Report on GBP performance', 'Recommend next steps'],
+  },
+};
+
+const content = serviceContent[service.slug] || serviceContent['local-seo'];
+---
+
+<Layout 
+  title={`${service.name} Gulf Coast MS | MapPulse`}
+  description={`${service.name} for Gulf Coast businesses. ${service.tagline}. ${service.price}. No contracts, real results.`}
+>
+  <Header activePage="Services" />
+
+  <section class="page-hero">
+    <div class="container">
+      <a href="/services/" class="back-link">← All Services</a>
+      <span class="service-icon">{service.icon}</span>
+      <h1>{service.name}</h1>
+      <p class="hero-tagline">{service.tagline}</p>
+      <p class="hero-price">{service.price}</p>
+    </div>
+  </section>
+
+  <section class="section intro-section">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-content">
+          <h2>What is {service.name}?</h2>
+          <p>{content.intro}</p>
+          <a href="/contact/" class="btn btn-primary">Get Started →</a>
+        </div>
+        <div class="benefits-card">
+          <h3>What You Get</h3>
+          <ul>
+            {content.benefits.map(benefit => (
+              <li>✓ {benefit}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section process-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>How It Works</h2>
+      </div>
+      <div class="process-steps">
+        {content.process.map((step, i) => (
+          <div class="process-step">
+            <span class="step-num">{i + 1}</span>
+            <p>{step}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section locations-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>{service.name} Across the Gulf Coast</h2>
+        <p>We provide {service.name.toLowerCase()} services in these Mississippi cities:</p>
+      </div>
+      <div class="locations-grid">
+        {locations.map(loc => (
+          <a href={`/locations/${loc.slug}-seo/`} class="location-tag">📍 {loc.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Ready to get started?</h2>
+        <p>Book a free 20-minute call. We'll tell you exactly what your business needs.</p>
+        <a href="/contact/" class="btn btn-primary">Get a Free Audit →</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .page-hero {
+    padding: 8rem 0 4rem;
+    background: var(--blue-50);
+    text-align: center;
+  }
+
+  .back-link {
+    display: inline-block;
+    font-size: 0.875rem;
+    color: var(--blue-600);
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link:hover {
+    color: var(--teal-600);
+  }
+
+  .service-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .page-hero h1 {
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-tagline {
+    font-size: 1.25rem;
+    color: var(--blue-600);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--teal-600);
+  }
+
+  .intro-section {
+    background: var(--white);
+  }
+
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .intro-content h2 {
+    margin-bottom: 1rem;
+  }
+
+  .intro-content p {
+    color: var(--blue-600);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .benefits-card {
+    padding: 2rem;
+    background: var(--blue-50);
+    border-radius: var(--radius-lg);
+  }
+
+  .benefits-card h3 {
+    margin-bottom: 1rem;
+  }
+
+  .benefits-card ul {
+    list-style: none;
+  }
+
+  .benefits-card li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--blue-100);
+    color: var(--blue-700);
+  }
+
+  .benefits-card li:last-child {
+    border-bottom: none;
+  }
+
+  .process-section {
+    background: var(--blue-900);
+    color: var(--white);
+  }
+
+  .process-section .section-header h2 {
+    color: var(--white);
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+
+  .process-step {
+    text-align: center;
+  }
+
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--teal-500);
+    color: var(--white);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    border-radius: var(--radius-full);
+    margin-bottom: 1rem;
+  }
+
+  .process-step p {
+    color: var(--blue-300);
+  }
+
+  .locations-section {
+    background: var(--blue-50);
+  }
+
+  .locations-section .section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .locations-section .section-header p {
+    color: var(--blue-600);
+    margin-top: 0.5rem;
+  }
+
+  .locations-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .location-tag {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--white);
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--blue-800);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s;
+  }
+
+  .location-tag:hover {
+    background: var(--teal-500);
+    color: var(--white);
+  }
+
+  .cta-section {
+    background: var(--white);
+  }
+
+  .cta-box {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, var(--teal-600) 0%, var(--teal-500) 100%);
+    border-radius: var(--radius-xl);
+    color: var(--white);
+  }
+
+  .cta-box h2 {
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .cta-box p {
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-box .btn {
+    background: var(--white);
+    color: var(--teal-600);
+  }
+
+  .cta-box .btn:hover {
+    background: var(--blue-900);
+    color: var(--white);
+  }
+
+  @media (min-width: 768px) {
+    .intro-grid {
+      grid-template-columns: 1.5fr 1fr;
+    }
+  }
+</style>

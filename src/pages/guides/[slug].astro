@@ -1,0 +1,317 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { guides, services } from '../../data/site';
+
+export function getStaticPaths() {
+  return guides.map(guide => ({
+    params: { slug: guide.slug },
+    props: { guide },
+  }));
+}
+
+const { guide } = Astro.props;
+const otherGuides = guides.filter(g => g.slug !== guide.slug).slice(0, 4);
+
+// Guide content (placeholder - each can be expanded with full articles)
+const guideContent: Record<string, { intro: string; sections: { title: string; content: string }[] }> = {
+  'what-is-local-seo': {
+    intro: 'Local SEO is the process of optimizing your online presence to rank higher in local search results. When someone searches for "plumber near me" or "best restaurant in Ocean Springs," local SEO determines who shows up first.',
+    sections: [
+      { title: 'Why Local SEO Matters', content: '72% of consumers who search for a local business visit a store within 5 miles. The Google Maps 3-pack gets 60-70% of all local search clicks. If you\'re not ranking locally, you\'re losing customers to competitors who are.' },
+      { title: 'Key Local SEO Factors', content: 'Google uses three main factors for local rankings: relevance (does your business match what the searcher wants?), distance (how close are you to the searcher?), and prominence (how well-known and trusted is your business online?).' },
+      { title: 'Getting Started', content: 'Start with your Google Business Profile. Claim it, verify it, and fill out every field completely. Add photos, respond to reviews, and post weekly updates. This single step can dramatically improve your local visibility.' },
+    ],
+  },
+  'google-maps-rankings': {
+    intro: 'Google Maps rankings work differently than regular search rankings. Understanding how the algorithm works is the first step to getting your business into the coveted 3-pack.',
+    sections: [
+      { title: 'The Map Pack', content: 'The map pack (or local 3-pack) shows the top 3 local results for a search query. These listings get 60-70% of all clicks from local searches. Your goal is to be one of those three businesses.' },
+      { title: 'Distance Factor', content: 'Google heavily weighs proximity to the searcher. This means it\'s very difficult to rank in cities where your business isn\'t physically located. Focus on dominating your immediate service area first.' },
+      { title: 'Optimizing for Maps', content: 'Fill out your GBP completely (5 categories, 20+ services). Get reviews consistently. Post weekly updates. Ensure your NAP (name, address, phone) is consistent everywhere online.' },
+    ],
+  },
+  'gbp-optimization-guide': {
+    intro: 'Your Google Business Profile is the foundation of local SEO. A fully optimized GBP can outperform businesses with bigger marketing budgets.',
+    sections: [
+      { title: 'Categories & Services', content: 'Add up to 5 business categories and 20-30 services. Most businesses only have 1 category and a handful of services — this is a huge missed opportunity. Use all available fields.' },
+      { title: 'Photos & Posts', content: 'Upload at least 50-100 photos. Post weekly updates about your services, promotions, or industry news. Active profiles rank higher than dormant ones.' },
+      { title: 'Reviews', content: 'Reviews are a major ranking factor. Ask every happy customer for a review. Respond to every review — positive or negative — within 24 hours.' },
+    ],
+  },
+  'why-reviews-matter': {
+    intro: 'Businesses with 50+ reviews get 4x more clicks than businesses with fewer reviews. Reviews are both a ranking factor and a trust signal.',
+    sections: [
+      { title: 'Reviews as Ranking Factor', content: 'Google uses review quantity, quality, and recency as ranking signals. More recent reviews carry more weight. A steady stream of new reviews signals an active, trustworthy business.' },
+      { title: 'Reviews as Trust Signals', content: '88% of consumers trust online reviews as much as personal recommendations. Your reviews are often the deciding factor between you and a competitor.' },
+      { title: 'Getting More Reviews', content: 'Ask every satisfied customer. Make it easy — send a direct link to your review page. Follow up with customers who say they\'ll leave a review. Respond to every review to show you care.' },
+    ],
+  },
+  'nap-consistency': {
+    intro: 'NAP stands for Name, Address, and Phone number. Inconsistent NAP across the web confuses Google and hurts your local rankings.',
+    sections: [
+      { title: 'What is NAP?', content: 'Your NAP is your business name, physical address, and phone number. These three pieces of information must be exactly the same everywhere your business appears online.' },
+      { title: 'Why Consistency Matters', content: 'Google uses NAP consistency to verify your business is legitimate. Inconsistencies — different phone formats, old addresses, misspellings — create doubt and hurt your rankings.' },
+      { title: 'How to Fix It', content: 'Audit your NAP across all directories, social profiles, and your website. Use the exact same format everywhere. Common culprits: old addresses, (228) vs 228-, Inc. vs Incorporated.' },
+    ],
+  },
+  'local-seo-for-contractors': {
+    intro: 'Contractors (HVAC, plumbers, electricians, roofers) have unique local SEO challenges. Service area businesses need a different approach than storefront businesses.',
+    sections: [
+      { title: 'Service Area Setup', content: 'Service area businesses can hide their address on Google and show the areas they serve instead. Set your service areas to match where you actually work — don\'t overreach.' },
+      { title: 'City Pages', content: 'Create dedicated pages for each city you serve. "Plumber in Ocean Springs" and "Plumber in Biloxi" should be separate pages targeting those specific audiences.' },
+      { title: 'Review Strategy', content: 'Ask every customer for a review after the job is done. Include the city name in your review response — "Thanks for choosing us for your Pascagoula plumbing needs!"' },
+    ],
+  },
+  'seo-vs-paid-ads': {
+    intro: 'Should you invest in SEO or paid ads? The answer depends on your timeline, budget, and business goals. Here\'s how to decide.',
+    sections: [
+      { title: 'Paid Ads: Fast but Expensive', content: 'Google Ads can put you at the top of search results immediately. But you pay for every click, and the moment you stop paying, you disappear. For competitive keywords, costs can be $20-50+ per click.' },
+      { title: 'SEO: Slow but Sustainable', content: 'SEO takes 3-6 months to show significant results. But once you rank, you get clicks for free. SEO builds an asset that keeps working even when you\'re not actively investing.' },
+      { title: 'The Smart Approach', content: 'Use paid ads for immediate leads while building SEO for long-term sustainability. As your SEO improves, you can reduce ad spend. The best businesses do both.' },
+    ],
+  },
+  'how-long-seo-takes': {
+    intro: 'SEO is not instant gratification. Setting realistic expectations helps you stay committed long enough to see results.',
+    sections: [
+      { title: 'Timeline Reality', content: 'Most local SEO campaigns show meaningful results in 3-6 months. Some competitive markets take 12+ months. The average page ranking #1 is about 3 years old.' },
+      { title: 'Early Wins', content: 'GBP optimization often shows results within weeks. Citation cleanup can help within a month or two. Content and link building take longer to compound.' },
+      { title: 'Why Patience Pays', content: 'SEO compounds over time. Month 1 feels slow. Month 6 shows progress. Month 12 shows momentum. The businesses that win at SEO are the ones who stay consistent.' },
+    ],
+  },
+  'core-30-explained': {
+    intro: 'The Core 30 is a strategic website structure with 30 essential pages designed to establish topical authority and rank for local searches.',
+    sections: [
+      { title: 'What is Core 30?', content: 'Core 30 is a framework of 30 strategic pages: service pages (one per offering), location pages (one per city), and topic pages (educational content that builds authority). Each page targets one primary keyword.' },
+      { title: 'Why It Works', content: 'Core 30 creates internal linking opportunities between services, locations, and topics. This structure signals to Google that you\'re an authority on your subject. More pages = more ranking opportunities.' },
+      { title: 'Implementing Core 30', content: 'Start with your core service pages. Add location pages for each city you serve. Create topic pages that answer common customer questions. Connect them all with strategic internal links.' },
+    ],
+  },
+};
+
+const content = guideContent[guide.slug] || guideContent['what-is-local-seo'];
+---
+
+<Layout 
+  title={`${guide.name} | Local SEO Guide | MapPulse`}
+  description={content.intro.slice(0, 155)}
+>
+  <Header activePage="Guides" />
+
+  <section class="page-hero">
+    <div class="container">
+      <a href="/guides/" class="back-link">← All Guides</a>
+      <span class="eyebrow">Local SEO Guide</span>
+      <h1>{guide.name}</h1>
+    </div>
+  </section>
+
+  <article class="section article-section">
+    <div class="container">
+      <div class="article-content">
+        <p class="intro">{content.intro}</p>
+        
+        {content.sections.map(section => (
+          <section class="article-section-block">
+            <h2>{section.title}</h2>
+            <p>{section.content}</p>
+          </section>
+        ))}
+      </div>
+
+      <aside class="article-sidebar">
+        <div class="sidebar-card">
+          <h3>Related Services</h3>
+          <ul>
+            {services.slice(0, 4).map(service => (
+              <li><a href={`/services/${service.slug}/`}>{service.name}</a></li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>More Guides</h3>
+          <ul>
+            {otherGuides.map(g => (
+              <li><a href={`/guides/${g.slug}/`}>{g.name}</a></li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="sidebar-cta">
+          <h3>Want help with this?</h3>
+          <p>We can handle your local SEO so you can focus on running your business.</p>
+          <a href="/contact/" class="btn btn-primary">Get a Free Audit</a>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Ready to put this into action?</h2>
+        <p>These guides are great for DIY, but if you'd rather have experts handle it — that's what we're here for.</p>
+        <a href="/contact/" class="btn btn-primary">Get Your Free Audit →</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .page-hero {
+    padding: 8rem 0 3rem;
+    background: var(--blue-50);
+  }
+
+  .back-link {
+    display: inline-block;
+    font-size: 0.875rem;
+    color: var(--blue-600);
+    margin-bottom: 1rem;
+  }
+
+  .back-link:hover {
+    color: var(--teal-600);
+  }
+
+  .page-hero h1 {
+    margin-top: 0.75rem;
+    max-width: 700px;
+  }
+
+  .article-section {
+    background: var(--white);
+  }
+
+  .article-section .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+
+  .article-content {
+    max-width: 700px;
+  }
+
+  .intro {
+    font-size: 1.25rem;
+    color: var(--blue-700);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .article-section-block {
+    margin-bottom: 2rem;
+  }
+
+  .article-section-block h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .article-section-block p {
+    color: var(--blue-600);
+    line-height: 1.7;
+  }
+
+  .article-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .sidebar-card {
+    padding: 1.5rem;
+    background: var(--blue-50);
+    border-radius: var(--radius-lg);
+  }
+
+  .sidebar-card h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .sidebar-card ul {
+    list-style: none;
+  }
+
+  .sidebar-card li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--blue-100);
+  }
+
+  .sidebar-card li:last-child {
+    border-bottom: none;
+  }
+
+  .sidebar-card a {
+    color: var(--blue-700);
+    font-size: 0.9375rem;
+  }
+
+  .sidebar-card a:hover {
+    color: var(--teal-600);
+  }
+
+  .sidebar-cta {
+    padding: 1.5rem;
+    background: var(--teal-600);
+    border-radius: var(--radius-lg);
+    color: var(--white);
+  }
+
+  .sidebar-cta h3 {
+    color: var(--white);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .sidebar-cta p {
+    font-size: 0.9375rem;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+  }
+
+  .sidebar-cta .btn {
+    width: 100%;
+    background: var(--white);
+    color: var(--teal-600);
+  }
+
+  .sidebar-cta .btn:hover {
+    background: var(--blue-900);
+    color: var(--white);
+  }
+
+  .cta-section {
+    background: var(--blue-50);
+  }
+
+  .cta-box {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--blue-900);
+    border-radius: var(--radius-xl);
+    color: var(--white);
+  }
+
+  .cta-box h2 {
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .cta-box p {
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .article-section .container {
+      grid-template-columns: 1fr 300px;
+    }
+  }
+</style>

@@ -1,0 +1,107 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../data/site';
+---
+
+<Layout 
+  title="Privacy Policy | MapPulse"
+  description="Privacy policy for MapPulse local SEO services."
+>
+  <Header />
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Privacy Policy</h1>
+      <p>Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+    </div>
+  </section>
+
+  <section class="section content-section">
+    <div class="container">
+      <div class="content">
+        <h2>Information We Collect</h2>
+        <p>When you contact us through our website or book a call, we collect information you provide directly, including your name, email address, phone number, and business information.</p>
+
+        <h2>How We Use Your Information</h2>
+        <p>We use the information we collect to:</p>
+        <ul>
+          <li>Respond to your inquiries and provide our services</li>
+          <li>Send you information about our services that may interest you</li>
+          <li>Improve our website and services</li>
+        </ul>
+
+        <h2>Information Sharing</h2>
+        <p>We do not sell, trade, or otherwise transfer your personal information to outside parties. This does not include trusted third parties who assist us in operating our website or conducting our business, as long as those parties agree to keep this information confidential.</p>
+
+        <h2>Cookies</h2>
+        <p>Our website may use cookies to enhance your experience. You can choose to have your computer warn you each time a cookie is being sent, or you can choose to turn off all cookies through your browser settings.</p>
+
+        <h2>Third-Party Services</h2>
+        <p>We may use third-party services such as Calendly for scheduling and analytics tools to understand how visitors use our site. These services have their own privacy policies.</p>
+
+        <h2>Contact Us</h2>
+        <p>If you have questions about this privacy policy, please contact us at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .page-hero {
+    padding: 8rem 0 4rem;
+    background: var(--blue-50);
+  }
+
+  .page-hero h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  .page-hero p {
+    color: var(--blue-600);
+  }
+
+  .content-section {
+    background: var(--white);
+  }
+
+  .content {
+    max-width: 700px;
+  }
+
+  .content h2 {
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem;
+  }
+
+  .content h2:first-child {
+    margin-top: 0;
+  }
+
+  .content p {
+    color: var(--blue-600);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .content ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .content li {
+    color: var(--blue-600);
+    margin-bottom: 0.5rem;
+  }
+
+  .content a {
+    color: var(--teal-600);
+  }
+
+  .content a:hover {
+    text-decoration: underline;
+  }
+</style>

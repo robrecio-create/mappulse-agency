@@ -1,0 +1,156 @@
+---
+import { SITE, services, locations, guides } from '../data/site';
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          <span class="logo-icon">📍</span>
+          <span class="logo-text">MapPulse</span>
+        </a>
+        <p>Gulf Coast Local SEO agency. We help Mississippi businesses rank on Google Maps and dominate local search.</p>
+        <p class="footer-location">📍 {SITE.address}</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Services</h4>
+        <ul>
+          {services.slice(0, 5).map(service => (
+            <li><a href={`/services/${service.slug}/`}>{service.name}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h4>Locations</h4>
+        <ul>
+          {locations.slice(0, 6).map(loc => (
+            <li><a href={`/locations/${loc.slug}-seo/`}>{loc.name} SEO</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <ul>
+          {guides.slice(0, 4).map(guide => (
+            <li><a href={`/guides/${guide.slug}/`}>{guide.name}</a></li>
+          ))}
+          <li><a href="/about/">About Us</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {new Date().getFullYear()} MapPulse. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="/privacy-policy/">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--blue-900);
+    color: var(--blue-400);
+    padding: 4rem 0 2rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .footer-brand {
+    max-width: 300px;
+  }
+
+  .footer-brand .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .footer-brand .logo-icon {
+    font-size: 1.5rem;
+  }
+
+  .footer-brand p {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-location {
+    color: var(--teal-400);
+  }
+
+  .footer-links h4 {
+    color: var(--white);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer-links ul {
+    list-style: none;
+  }
+
+  .footer-links li {
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-links a {
+    font-size: 0.9375rem;
+    color: var(--blue-400);
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover {
+    color: var(--teal-400);
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--blue-700);
+    font-size: 0.875rem;
+  }
+
+  .footer-legal {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .footer-legal a {
+    color: var(--blue-500);
+  }
+
+  .footer-legal a:hover {
+    color: var(--teal-400);
+  }
+
+  @media (min-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1.5fr repeat(3, 1fr);
+    }
+
+    .footer-bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+</style>

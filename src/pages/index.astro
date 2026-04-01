@@ -1,0 +1,525 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, services, locations } from '../data/site';
+---
+
+<Layout 
+  title="Local SEO Agency Gulf Coast MS | MapPulse"
+  description="Gulf Coast Local SEO agency helping Mississippi businesses rank on Google Maps. GBP optimization, local SEO, and websites that convert. Ocean Springs, Biloxi, Gulfport."
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "MapPulse",
+    "description": "Gulf Coast Local SEO agency",
+    "url": "https://www.mappulse.agency",
+    "telephone": SITE.phone,
+    "email": SITE.email,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ocean Springs",
+      "addressRegion": "MS",
+      "addressCountry": "US"
+    },
+    "areaServed": locations.map(l => ({
+      "@type": "City",
+      "name": l.name + ", Mississippi"
+    }))
+  })} />
+
+  <Header activePage="Home" />
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <span class="eyebrow">Gulf Coast Local SEO</span>
+        <h1>Put Your Business<br/>on the Map.</h1>
+        <p class="hero-subtitle">
+          Most local businesses in Mississippi are invisible online. MapPulse fixes that — with real local SEO, Google Business Profile optimization, and websites built to rank.
+        </p>
+        <div class="hero-ctas">
+          <a href="/contact/" class="btn btn-primary">Get a Free Audit →</a>
+          <a href="/services/full-seo-package/" class="btn btn-secondary">See Our Services</a>
+        </div>
+        <div class="hero-trust">
+          <span>Trusted tools & platforms:</span>
+          <div class="trust-logos">
+            <span>Google Business Profile</span>
+            <span>Local SEO</span>
+            <span>WordPress</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Section -->
+  <section class="section problem-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">The Problem</span>
+        <h2>Most local businesses are invisible online.</h2>
+        <p>Your customers are searching Google right now. If you're not showing up, someone else is getting the call.</p>
+      </div>
+      
+      <div class="problems-grid">
+        <div class="problem-card">
+          <span class="problem-num">01</span>
+          <h3>No Google Maps presence</h3>
+          <p>72% of local searches end with a store visit. If you're not in the 3-Pack, you're handing those customers to your competitors.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-num">02</span>
+          <h3>Outdated or missing website</h3>
+          <p>A slow, mobile-unfriendly site kills trust instantly. Local buyers judge your business by how it looks online before they ever call.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-num">03</span>
+          <h3>No review strategy</h3>
+          <p>Businesses with 50+ reviews get 4x more clicks. Most local businesses have no system for collecting and responding to reviews.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-num">04</span>
+          <h3>Zero content or citations</h3>
+          <p>Google ranks businesses it can verify. Inconsistent NAP data and no local content signals mean you stay buried on page 3.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="section services-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Our Services</span>
+        <h2>Simple services. Real results.</h2>
+        <p>Everything a Gulf Coast small business needs to show up online — no contracts, no jargon, no hidden fees.</p>
+      </div>
+
+      <div class="services-grid">
+        {services.slice(0, 6).map(service => (
+          <a href={`/services/${service.slug}/`} class:list={['service-card', { featured: service.featured }]}>
+            {service.featured && <span class="featured-badge">★ Most Popular</span>}
+            <span class="service-icon">{service.icon}</span>
+            <h3>{service.name}</h3>
+            <p>{service.tagline}</p>
+            <span class="service-price">{service.price}</span>
+          </a>
+        ))}
+      </div>
+
+      <div class="services-cta">
+        <a href="/services/" class="btn btn-outline">View All Services →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="section process-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">The Process</span>
+        <h2>How MapPulse works</h2>
+        <p>Three steps from invisible to in-demand. No long contracts, no confusing reports, no runaround.</p>
+      </div>
+
+      <div class="process-steps">
+        <div class="process-step">
+          <span class="step-num">1</span>
+          <h3>Free Audit</h3>
+          <p>We review your Google presence, website, citations, and reviews — and tell you exactly what's costing you customers.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">2</span>
+          <h3>Custom Strategy</h3>
+          <p>You get a clear plan tailored to your business. We explain exactly what we'll do, why, and what results to expect.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-num">3</span>
+          <h3>Real Results</h3>
+          <p>We handle everything. Monthly reports show your rankings, traffic, and calls — in plain English, not agency jargon.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Locations Section -->
+  <section class="section locations-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Our Territory</span>
+        <h2>We know the Gulf Coast.</h2>
+        <p>We're not a national agency sending templated reports from out of state. MapPulse is based right here on the Mississippi Gulf Coast.</p>
+      </div>
+
+      <div class="locations-grid">
+        {locations.map(loc => (
+          <a href={`/locations/${loc.slug}-seo/`} class="location-tag">
+            📍 {loc.name}
+          </a>
+        ))}
+      </div>
+
+      <div class="value-props">
+        <div class="value-prop">
+          <span class="value-icon">🤝</span>
+          <h4>We already have your listing</h4>
+          <p>Every business in our directory network is a warm lead. We know your business before we ever talk.</p>
+        </div>
+        <div class="value-prop">
+          <span class="value-icon">💰</span>
+          <h4>Transparent pricing</h4>
+          <p>No retainer traps. No hidden fees. No long-term lock-ins. You know exactly what you're paying for.</p>
+        </div>
+        <div class="value-prop">
+          <span class="value-icon">📊</span>
+          <h4>Results you can see</h4>
+          <p>Monthly reports with real numbers: rankings, calls, traffic. Not vanity metrics or agency fluff.</p>
+        </div>
+        <div class="value-prop">
+          <span class="value-icon">🌊</span>
+          <h4>Gulf Coast rooted</h4>
+          <p>We know Ocean Springs, we know Pascagoula. This is our home — we have skin in the game.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Ready to put your business<br/>on the map?</h2>
+        <p>Start with a free local SEO audit. We'll show you exactly where you stand and what it would take to rank on Google.</p>
+        <p class="cta-note">No cost. No commitment. Just a straight answer about where your business stands online.</p>
+        <a href="/contact/" class="btn btn-primary btn-lg">Get Your Free Audit →</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Hero */
+  .hero {
+    padding: 8rem 0 5rem;
+    background: linear-gradient(135deg, var(--blue-50) 0%, var(--white) 100%);
+  }
+
+  .hero-content {
+    max-width: 700px;
+  }
+
+  .hero h1 {
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--blue-600);
+    margin-bottom: 2rem;
+    line-height: 1.7;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .hero-trust {
+    padding-top: 2rem;
+    border-top: 1px solid var(--blue-100);
+  }
+
+  .hero-trust span {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--blue-500);
+    margin-bottom: 0.75rem;
+  }
+
+  .trust-logos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .trust-logos span {
+    font-weight: 600;
+    color: var(--blue-700);
+    font-size: 0.9375rem;
+  }
+
+  /* Problems */
+  .problem-section {
+    background: var(--white);
+  }
+
+  .problems-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+  }
+
+  .problem-card {
+    padding: 2rem;
+    background: var(--blue-50);
+    border-radius: var(--radius-lg);
+  }
+
+  .problem-num {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--teal-600);
+    margin-bottom: 1rem;
+  }
+
+  .problem-card h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .problem-card p {
+    color: var(--blue-600);
+    font-size: 0.9375rem;
+  }
+
+  /* Services */
+  .services-section {
+    background: var(--blue-900);
+    color: var(--white);
+  }
+
+  .services-section .section-header h2,
+  .services-section .section-header p {
+    color: var(--white);
+  }
+
+  .services-section .eyebrow {
+    color: var(--teal-400);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    position: relative;
+    padding: 2rem;
+    background: var(--blue-800);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--blue-700);
+    transition: all 0.3s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--teal-500);
+  }
+
+  .service-card.featured {
+    border-color: var(--teal-500);
+    background: linear-gradient(135deg, var(--blue-800) 0%, rgba(20, 184, 166, 0.1) 100%);
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: -10px;
+    right: 1.5rem;
+    background: var(--teal-500);
+    color: var(--white);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+  }
+
+  .service-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .service-card h3 {
+    color: var(--white);
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .service-card p {
+    color: var(--blue-400);
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-price {
+    font-weight: 600;
+    color: var(--teal-400);
+  }
+
+  .services-cta {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+
+  .services-section .btn-outline {
+    border-color: var(--white);
+    color: var(--white);
+  }
+
+  .services-section .btn-outline:hover {
+    background: var(--white);
+    color: var(--blue-900);
+  }
+
+  /* Process */
+  .process-section {
+    background: var(--white);
+  }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .process-step {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: var(--teal-500);
+    color: var(--white);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.25rem;
+    border-radius: var(--radius-full);
+    margin-bottom: 1.5rem;
+  }
+
+  .process-step h3 {
+    margin-bottom: 0.75rem;
+  }
+
+  .process-step p {
+    color: var(--blue-600);
+  }
+
+  /* Locations */
+  .locations-section {
+    background: var(--blue-50);
+  }
+
+  .locations-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .location-tag {
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    background: var(--white);
+    border-radius: var(--radius-full);
+    font-weight: 500;
+    color: var(--blue-800);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease;
+  }
+
+  .location-tag:hover {
+    background: var(--teal-500);
+    color: var(--white);
+    transform: translateY(-2px);
+  }
+
+  .value-props {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+  }
+
+  .value-prop {
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .value-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .value-prop h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .value-prop p {
+    font-size: 0.9375rem;
+    color: var(--blue-600);
+  }
+
+  /* CTA */
+  .cta-section {
+    background: var(--white);
+  }
+
+  .cta-box {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, var(--teal-600) 0%, var(--teal-500) 100%);
+    border-radius: var(--radius-xl);
+    color: var(--white);
+  }
+
+  .cta-box h2 {
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .cta-box p {
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+    opacity: 0.9;
+  }
+
+  .cta-note {
+    font-size: 0.9375rem;
+    opacity: 0.8;
+  }
+
+  .cta-box .btn {
+    margin-top: 1rem;
+    background: var(--white);
+    color: var(--teal-600);
+  }
+
+  .cta-box .btn:hover {
+    background: var(--blue-900);
+    color: var(--white);
+  }
+
+  .btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+</style>

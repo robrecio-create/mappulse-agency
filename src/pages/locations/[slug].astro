@@ -1,0 +1,314 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { services, locations } from '../../data/site';
+
+export function getStaticPaths() {
+  return locations.map(loc => ({
+    params: { slug: `${loc.slug}-seo` },
+    props: { location: loc },
+  }));
+}
+
+const { location } = Astro.props;
+const otherLocations = locations.filter(l => l.slug !== location.slug).slice(0, 6);
+---
+
+<Layout 
+  title={`${location.name} SEO Services | Local SEO ${location.name} MS | MapPulse`}
+  description={`Local SEO services in ${location.name}, Mississippi. Get found on Google Maps, optimize your GBP, and grow your ${location.name} business. Gulf Coast SEO experts.`}
+>
+  <Header activePage="Locations" />
+
+  <section class="page-hero">
+    <div class="container">
+      <a href="/locations/" class="back-link">← All Locations</a>
+      <span class="eyebrow">{location.county} County, MS</span>
+      <h1>{location.name} SEO Services</h1>
+      <p>Local SEO services for {location.name} businesses. Get found when customers search for services in your area.</p>
+    </div>
+  </section>
+
+  <section class="section intro-section">
+    <div class="container">
+      <div class="intro-content">
+        <h2>Why {location.name} Businesses Need Local SEO</h2>
+        <p>When someone in {location.name} searches for a service — "plumber near me," "best restaurant in {location.name}," or "HVAC {location.county} County" — Google decides who shows up. If you're not optimized for local search, you're invisible to customers who are ready to buy.</p>
+        <p>MapPulse helps {location.name} businesses rank higher on Google Maps and local search results. We know {location.county} County because we're based here. We understand what {location.name} customers are searching for and how to get your business in front of them.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section services-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>SEO Services in {location.name}</h2>
+        <p>Everything you need to dominate local search in {location.name}, Mississippi.</p>
+      </div>
+      <div class="services-grid">
+        {services.slice(0, 6).map(service => (
+          <a href={`/services/${service.slug}/`} class="service-card">
+            <span class="service-icon">{service.icon}</span>
+            <h3>{service.name}</h3>
+            <p>{service.tagline}</p>
+            <span class="service-price">{service.price}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section why-section">
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-content">
+          <h2>Why Choose MapPulse for {location.name} SEO?</h2>
+          <ul class="why-list">
+            <li>
+              <strong>Local Knowledge</strong>
+              <p>We're based on the Gulf Coast. We know {location.name} and {location.county} County — the neighborhoods, the businesses, and what customers are searching for.</p>
+            </li>
+            <li>
+              <strong>Directory Network</strong>
+              <p>Your business may already be listed on {location.county === 'Jackson' ? 'JacksonCountyMS.com' : location.county === 'Harrison' ? 'HarrisonCountyMS.com' : 'HancockCountyMS.com'}. We built it. MapPulse turns that listing into a full local SEO strategy.</p>
+            </li>
+            <li>
+              <strong>No Contracts</strong>
+              <p>Month-to-month pricing. No retainer traps. You stay because we deliver results, not because you're locked in.</p>
+            </li>
+            <li>
+              <strong>Real Reporting</strong>
+              <p>Every month you see your rankings, traffic, and calls. Plain English, not agency jargon.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section other-locations-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>We Also Serve These Areas</h2>
+      </div>
+      <div class="locations-grid">
+        {otherLocations.map(loc => (
+          <a href={`/locations/${loc.slug}-seo/`} class="location-tag">📍 {loc.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Ready to rank in {location.name}?</h2>
+        <p>Get a free local SEO audit for your {location.name} business. We'll show you exactly where you stand and what it would take to rank.</p>
+        <a href="/contact/" class="btn btn-primary">Get Your Free Audit →</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .page-hero {
+    padding: 8rem 0 4rem;
+    background: var(--blue-50);
+    text-align: center;
+  }
+
+  .back-link {
+    display: inline-block;
+    font-size: 0.875rem;
+    color: var(--blue-600);
+    margin-bottom: 1rem;
+  }
+
+  .back-link:hover {
+    color: var(--teal-600);
+  }
+
+  .page-hero h1 {
+    margin: 0.75rem 0 1rem;
+  }
+
+  .page-hero p {
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--blue-600);
+    font-size: 1.125rem;
+  }
+
+  .intro-section {
+    background: var(--white);
+  }
+
+  .intro-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .intro-content h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  .intro-content p {
+    color: var(--blue-600);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .services-section {
+    background: var(--blue-50);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-header p {
+    color: var(--blue-600);
+    margin-top: 0.5rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    padding: 2rem;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .service-card:hover {
+    border-color: var(--teal-500);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .service-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .service-card h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .service-card p {
+    color: var(--blue-600);
+    font-size: 0.9375rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .service-price {
+    font-weight: 600;
+    color: var(--teal-600);
+  }
+
+  .why-section {
+    background: var(--white);
+  }
+
+  .why-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .why-content h2 {
+    margin-bottom: 2rem;
+  }
+
+  .why-list {
+    list-style: none;
+  }
+
+  .why-list li {
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    background: var(--blue-50);
+    border-radius: var(--radius-md);
+  }
+
+  .why-list strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--blue-900);
+  }
+
+  .why-list p {
+    color: var(--blue-600);
+    margin: 0;
+  }
+
+  .other-locations-section {
+    background: var(--blue-50);
+  }
+
+  .locations-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .location-tag {
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    background: var(--white);
+    border-radius: var(--radius-full);
+    font-weight: 500;
+    color: var(--blue-800);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s;
+  }
+
+  .location-tag:hover {
+    background: var(--teal-500);
+    color: var(--white);
+  }
+
+  .cta-section {
+    background: var(--white);
+  }
+
+  .cta-box {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, var(--teal-600) 0%, var(--teal-500) 100%);
+    border-radius: var(--radius-xl);
+    color: var(--white);
+  }
+
+  .cta-box h2 {
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .cta-box p {
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+    opacity: 0.9;
+  }
+
+  .cta-box .btn {
+    background: var(--white);
+    color: var(--teal-600);
+  }
+
+  .cta-box .btn:hover {
+    background: var(--blue-900);
+    color: var(--white);
+  }
+</style>

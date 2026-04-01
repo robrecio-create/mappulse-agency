@@ -1,0 +1,168 @@
+---
+interface Props {
+  activePage?: string;
+}
+const { activePage = '' } = Astro.props;
+---
+
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="/" class="logo">
+      <span class="logo-icon">📍</span>
+      <span class="logo-text">MapPulse</span>
+    </a>
+    
+    <nav class="nav-desktop">
+      <a href="/services/" class:list={[{ active: activePage === 'Services' }]}>Services</a>
+      <a href="/locations/" class:list={[{ active: activePage === 'Locations' }]}>Locations</a>
+      <a href="/guides/" class:list={[{ active: activePage === 'Guides' }]}>Guides</a>
+      <a href="/about/" class:list={[{ active: activePage === 'About' }]}>About</a>
+      <a href="/results/" class:list={[{ active: activePage === 'Results' }]}>Results</a>
+    </nav>
+
+    <a href="/contact/" class="btn btn-primary nav-cta">Free SEO Audit</a>
+
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="nav-mobile" id="mobile-menu">
+    <a href="/services/">Services</a>
+    <a href="/locations/">Locations</a>
+    <a href="/guides/">Guides</a>
+    <a href="/about/">About</a>
+    <a href="/results/">Results</a>
+    <a href="/contact/" class="btn btn-primary">Free SEO Audit</a>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const menu = document.getElementById('mobile-menu');
+  
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header?.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+</script>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .header.scrolled {
+    border-bottom-color: var(--blue-100);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--blue-900);
+  }
+
+  .logo-icon {
+    font-size: 1.5rem;
+  }
+
+  .nav-desktop {
+    display: none;
+    gap: 2rem;
+  }
+
+  .nav-desktop a {
+    font-weight: 500;
+    color: var(--blue-700);
+    transition: color 0.2s;
+  }
+
+  .nav-desktop a:hover,
+  .nav-desktop a.active {
+    color: var(--teal-600);
+  }
+
+  .nav-cta {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+    background: none;
+    border: none;
+  }
+
+  .nav-toggle span {
+    width: 24px;
+    height: 2px;
+    background: var(--blue-800);
+    transition: all 0.3s;
+  }
+
+  .nav-mobile {
+    display: none;
+    flex-direction: column;
+    padding: 1rem 1.5rem 1.5rem;
+    background: var(--white);
+    border-top: 1px solid var(--blue-100);
+  }
+
+  .nav-mobile.open {
+    display: flex;
+  }
+
+  .nav-mobile a {
+    padding: 0.75rem 0;
+    font-weight: 500;
+    color: var(--blue-700);
+    border-bottom: 1px solid var(--blue-100);
+  }
+
+  .nav-mobile a:last-child {
+    border-bottom: none;
+    margin-top: 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .nav-desktop {
+      display: flex;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+    }
+
+    .nav-toggle,
+    .nav-mobile {
+      display: none !important;
+    }
+  }
+</style>
