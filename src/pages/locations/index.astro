@@ -86,44 +86,33 @@ const hancock = locations.filter(l => l.county === 'Hancock');
 <style>
   .page-hero {
     padding: 8rem 0 4rem;
-    background: linear-gradient(135deg, #0a0f1a 0%, #1a1f35 100%);
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
     text-align: center;
-    color: var(--white);
-    position: relative;
-    overflow: hidden;
   }
 
-  .page-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(6, 182, 212, 0.15) 0%, transparent 60%);
-  }
-
-  .page-hero .container {
-    position: relative;
+  .page-hero .eyebrow {
+    color: #f97316;
   }
 
   .page-hero h1 {
     margin: 0.75rem 0 1rem;
-    color: var(--white);
+    color: #0f1629;
   }
 
   .page-hero p {
     max-width: 600px;
     margin: 0 auto;
-    color: rgba(255,255,255,0.7);
+    color: #4b5468;
     font-size: 1.125rem;
   }
 
   .locations-section {
-    background: var(--blue-900);
-    color: var(--white);
+    background: white;
   }
 
   .county-group h2 {
-    color: var(--white);
-    border-bottom-color: var(--blue-700);
+    color: #0f1629;
+    border-bottom-color: #e5e7eb;
   }
 
   .county-group {
@@ -148,18 +137,17 @@ const hancock = locations.filter(l => l.county === 'Hancock');
 
   .location-card {
     padding: 2rem;
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(10px);
+    background: white;
     border-radius: var(--radius-lg);
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     transition: all 0.3s ease;
   }
 
   .location-card:hover {
-    border-color: var(--teal-500);
-    background: rgba(255,255,255,0.1);
+    border-color: #06b6d4;
     transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
   }
 
   .location-icon {
@@ -171,22 +159,22 @@ const hancock = locations.filter(l => l.county === 'Hancock');
   .location-card h3 {
     font-size: 1.125rem;
     margin-bottom: 0.5rem;
-    color: var(--white);
+    color: #0f1629;
   }
 
   .location-card p {
-    color: rgba(255,255,255,0.6);
+    color: #4b5468;
     font-size: 0.9375rem;
     margin-bottom: 1rem;
   }
 
   .learn-more {
     font-weight: 500;
-    color: var(--teal-400);
+    color: #06b6d4;
   }
 
   .cta-section {
-    background: #0a0f1a;
+    background: #f8fafc;
   }
 
   .cta-box {
