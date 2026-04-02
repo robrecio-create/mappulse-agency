@@ -114,6 +114,30 @@ import { SITE, services, locations } from '../data/site';
     </div>
   </section>
 
+  <!-- Stats Section -->
+  <section class="section stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-value">+340%</span>
+          <span class="stat-label">Average Traffic Increase</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">3-Pack</span>
+          <span class="stat-label">Google Maps Rankings</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">2,200+</span>
+          <span class="stat-label">Businesses in Our Directory</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">30 days</span>
+          <span class="stat-label">To First Results</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Services Section -->
   <section class="section services-section">
     <div class="container">
@@ -537,6 +561,68 @@ import { SITE, services, locations } from '../data/site';
   .problem-card p {
     color: #4b5468;
     font-size: 0.9375rem;
+  }
+
+  /* Stats Section */
+  .stats-section {
+    background: linear-gradient(135deg, #0f1629 0%, #1a2847 100%);
+    padding: 4rem 0;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .stat-card {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .stat-value {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #fbbf24 0%, #22c55e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-card:nth-child(2) .stat-value {
+    background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stat-card:nth-child(3) .stat-value {
+    background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stat-card:nth-child(4) .stat-value {
+    background: linear-gradient(135deg, #22c55e 0%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stat-label {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+
+  @media (min-width: 768px) {
+    .stats-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 
   /* Services */
