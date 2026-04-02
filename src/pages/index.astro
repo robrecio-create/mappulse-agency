@@ -242,39 +242,40 @@ import { SITE, services, locations } from '../data/site';
   .hero-bg {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #0a0f1a 0%, #1a1f35 50%, #0f1629 100%);
+    background: linear-gradient(160deg, #0f1629 0%, #1a2847 40%, #1e3a5f 100%);
   }
 
   .hero-gradient {
     position: absolute;
     inset: 0;
     background: 
-      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
-      radial-gradient(ellipse 60% 40% at 100% 50%, rgba(249, 115, 22, 0.1) 0%, transparent 50%);
+      radial-gradient(ellipse 100% 60% at 20% -10%, rgba(251, 191, 36, 0.2) 0%, transparent 50%),
+      radial-gradient(ellipse 80% 50% at 80% 20%, rgba(6, 182, 212, 0.25) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 40% at 100% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
   }
 
   .hero-glow {
     position: absolute;
     border-radius: 50%;
-    filter: blur(80px);
+    filter: blur(100px);
     animation: float 8s ease-in-out infinite;
   }
 
   .hero-glow-1 {
-    width: 400px;
-    height: 400px;
-    background: rgba(6, 182, 212, 0.2);
-    top: -100px;
-    right: 10%;
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(34, 197, 94, 0.2));
+    top: -150px;
+    right: 5%;
     animation-delay: 0s;
   }
 
   .hero-glow-2 {
-    width: 300px;
-    height: 300px;
-    background: rgba(249, 115, 22, 0.15);
-    bottom: -50px;
-    right: 30%;
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.25), rgba(249, 115, 22, 0.2));
+    bottom: -100px;
+    left: 10%;
     animation-delay: -4s;
   }
 
@@ -312,14 +313,15 @@ import { SITE, services, locations } from '../data/site';
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, #06b6d4 0%, #22d3ee 50%, #f97316 100%);
+    background: linear-gradient(135deg, #fbbf24 0%, #f97316 40%, #06b6d4 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .hero .eyebrow {
-    color: var(--teal-400);
+    color: #fbbf24;
+    font-weight: 700;
   }
 
   .hero-subtitle {
@@ -379,33 +381,34 @@ import { SITE, services, locations } from '../data/site';
   .hero-card {
     position: absolute;
     padding: 1.25rem 1.5rem;
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.95);
     border-radius: 16px;
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
     animation: cardFloat 6s ease-in-out infinite;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
   }
 
   .hero-card-1 {
     top: 10%;
     right: 10%;
     animation-delay: 0s;
+    border-left: 4px solid #06b6d4;
   }
 
   .hero-card-2 {
     top: 45%;
     right: 30%;
     animation-delay: -2s;
+    border-left: 4px solid #fbbf24;
   }
 
   .hero-card-3 {
     top: 70%;
     right: 5%;
     animation-delay: -4s;
+    border-left: 4px solid #22c55e;
   }
 
   @keyframes cardFloat {
@@ -421,27 +424,27 @@ import { SITE, services, locations } from '../data/site';
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: rgba(255,255,255,0.6);
+    color: #6b7280;
   }
 
   .card-stat {
     font-family: var(--font-heading);
     font-size: 1.25rem;
     font-weight: 700;
-    color: var(--teal-400);
+    color: #0f1629;
   }
 
   .hero-map-pin {
     position: absolute;
     top: 30%;
     right: 50%;
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #06b6d4, #f97316);
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #fbbf24, #f97316);
     border-radius: 50% 50% 50% 0;
     transform: rotate(-45deg);
     animation: pinBounce 2s ease-in-out infinite;
-    box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4);
+    box-shadow: 0 15px 40px rgba(251, 191, 36, 0.5);
   }
 
   .hero-map-pin::after {
@@ -473,7 +476,19 @@ import { SITE, services, locations } from '../data/site';
 
   /* Problems */
   .problem-section {
-    background: var(--white);
+    background: #f8fafc;
+  }
+
+  .problem-section .section-header h2 {
+    color: #0f1629;
+  }
+
+  .problem-section .section-header p {
+    color: #4b5468;
+  }
+
+  .problem-section .eyebrow {
+    color: #f97316;
   }
 
   .problems-grid {
@@ -484,13 +499,20 @@ import { SITE, services, locations } from '../data/site';
 
   .problem-card {
     padding: 2rem;
-    background: var(--blue-900);
+    background: white;
     border-radius: var(--radius-lg);
-    color: var(--white);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border-top: 4px solid #06b6d4;
+    transition: all 0.3s ease;
   }
 
-  .problem-card h3 {
-    color: var(--white);
+  .problem-card:nth-child(2) { border-top-color: #fbbf24; }
+  .problem-card:nth-child(3) { border-top-color: #22c55e; }
+  .problem-card:nth-child(4) { border-top-color: #8b5cf6; }
+
+  .problem-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
   }
 
   .problem-num {
@@ -498,18 +520,22 @@ import { SITE, services, locations } from '../data/site';
     font-family: var(--font-heading);
     font-size: 0.875rem;
     font-weight: 700;
-    color: var(--teal-600);
+    color: #06b6d4;
     margin-bottom: 1rem;
   }
+
+  .problem-card:nth-child(2) .problem-num { color: #fbbf24; }
+  .problem-card:nth-child(3) .problem-num { color: #22c55e; }
+  .problem-card:nth-child(4) .problem-num { color: #8b5cf6; }
 
   .problem-card h3 {
     font-size: 1.125rem;
     margin-bottom: 0.75rem;
-    color: var(--white);
+    color: #0f1629;
   }
 
   .problem-card p {
-    color: var(--blue-400);
+    color: #4b5468;
     font-size: 0.9375rem;
   }
 
