@@ -86,23 +86,44 @@ const hancock = locations.filter(l => l.county === 'Hancock');
 <style>
   .page-hero {
     padding: 8rem 0 4rem;
-    background: var(--blue-50);
+    background: linear-gradient(135deg, #0a0f1a 0%, #1a1f35 100%);
     text-align: center;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(6, 182, 212, 0.15) 0%, transparent 60%);
+  }
+
+  .page-hero .container {
+    position: relative;
   }
 
   .page-hero h1 {
     margin: 0.75rem 0 1rem;
+    color: var(--white);
   }
 
   .page-hero p {
     max-width: 600px;
     margin: 0 auto;
-    color: var(--blue-600);
+    color: rgba(255,255,255,0.7);
     font-size: 1.125rem;
   }
 
   .locations-section {
-    background: var(--white);
+    background: var(--blue-900);
+    color: var(--white);
+  }
+
+  .county-group h2 {
+    color: var(--white);
+    border-bottom-color: var(--blue-700);
   }
 
   .county-group {
@@ -127,14 +148,16 @@ const hancock = locations.filter(l => l.county === 'Hancock');
 
   .location-card {
     padding: 2rem;
-    background: var(--blue-50);
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
     border-radius: var(--radius-lg);
-    border: 2px solid transparent;
+    border: 1px solid rgba(255,255,255,0.1);
     transition: all 0.3s ease;
   }
 
   .location-card:hover {
     border-color: var(--teal-500);
+    background: rgba(255,255,255,0.1);
     transform: translateY(-4px);
     box-shadow: var(--shadow-lg);
   }
@@ -148,21 +171,22 @@ const hancock = locations.filter(l => l.county === 'Hancock');
   .location-card h3 {
     font-size: 1.125rem;
     margin-bottom: 0.5rem;
+    color: var(--white);
   }
 
   .location-card p {
-    color: var(--blue-600);
+    color: rgba(255,255,255,0.6);
     font-size: 0.9375rem;
     margin-bottom: 1rem;
   }
 
   .learn-more {
     font-weight: 500;
-    color: var(--teal-600);
+    color: var(--teal-400);
   }
 
   .cta-section {
-    background: var(--blue-50);
+    background: #0a0f1a;
   }
 
   .cta-box {
