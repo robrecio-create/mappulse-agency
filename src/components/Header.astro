@@ -18,6 +18,7 @@ const { activePage = '' } = Astro.props;
       <a href="/guides/" class:list={[{ active: activePage === 'Guides' }]}>Guides</a>
       <a href="/about/" class:list={[{ active: activePage === 'About' }]}>About</a>
       <a href="/results/" class:list={[{ active: activePage === 'Results' }]}>Results</a>
+      <a href="https://theseawallms.com" target="_blank" rel="noopener noreferrer" class="nav-newsletter">Newsletter</a>
     </nav>
 
     <a href="/contact/" class="btn btn-primary nav-cta">Free SEO Audit</a>
@@ -33,6 +34,7 @@ const { activePage = '' } = Astro.props;
     <a href="/guides/">Guides</a>
     <a href="/about/">About</a>
     <a href="/results/">Results</a>
+    <a href="https://theseawallms.com" target="_blank" rel="noopener noreferrer">Newsletter</a>
     <a href="/contact/" class="btn btn-primary">Free SEO Audit</a>
   </nav>
 </header>
@@ -109,6 +111,21 @@ const { activePage = '' } = Astro.props;
 
   .nav-cta {
     display: none;
+  }
+  .nav-desktop .nav-newsletter {
+    padding: 0.45rem 0.9rem;
+    background: var(--teal-50, rgba(20, 184, 166, 0.08));
+    color: var(--teal-700, #0f766e);
+    border: 1px solid var(--teal-200, rgba(20, 184, 166, 0.25));
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .nav-desktop .nav-newsletter:hover {
+    background: var(--teal-600);
+    color: var(--white);
+    border-color: var(--teal-600);
   }
 
   .nav-toggle {
